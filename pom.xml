@@ -38,6 +38,11 @@
       <version>4.8.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>1.16</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -47,7 +52,7 @@
         <artifactId>maven-plugin-plugin</artifactId>
         <version>3.2</version>
         <configuration>
-          <goalPrefix>yamllint-maven-plugin</goalPrefix>
+          <goalPrefix>yamllint</goalPrefix>
           <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
         </configuration>
         <executions>
