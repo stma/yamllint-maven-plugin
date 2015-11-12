@@ -2,18 +2,25 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.stma.yamllint.plugin</groupId>
+  <groupId>com.github.stma</groupId>
   <artifactId>yamllint-maven-plugin</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1</version>
   <packaging>maven-plugin</packaging>
 
-  <name>yamllint-maven-plugin Maven Plugin</name>
+  <name>${project.groupId}:${project.artifactId}</name>
 
   <url>https://github.com/stma/yamllint-maven-plugin</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <licenses>
+    <license>
+      <name>CC0 1.0 Universal</name>
+      <url>http://creativecommons.org/publicdomain/zero/1.0/</url>
+    </license>
+  </licenses>
 
   <dependencies>
     <dependency>
@@ -88,12 +95,11 @@
               <pomIncludes>
                 <pomInclude>*/pom.xml</pomInclude>
               </pomIncludes>
-              <postBuildHookScript>verify</postBuildHookScript>
               <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
               <settingsFile>src/it/settings.xml</settingsFile>
               <goals>
                 <goal>clean</goal>
-                <goal>test-compile</goal>
+                <goal>validate</goal>
               </goals>
             </configuration>
             <executions>

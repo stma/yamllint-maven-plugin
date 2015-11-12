@@ -22,9 +22,9 @@ public class YamlLintMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException {
         try {
-            Files.walkFileTree(projectBaseDir.toPath(), new YamlFilesChecker());
+            Files.walkFileTree(projectBaseDir.toPath(), new YamlFilesChecker(this));
         } catch (IOException e) {
-            e.printStackTrace();
+            getLog().error(e);
         }
     }
 }

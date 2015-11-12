@@ -10,10 +10,16 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.FileVisitResult;
 import java.io.IOException;
+import org.apache.maven.plugin.Mojo;
 
 public class YamlFilesChecker extends SimpleFileVisitor<Path> {
 
     private final PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.yaml");
+    private Mojo mojo;
+
+    public YamlFilesChecker(Mojo mojo) {
+        this.mojo = mojo;
+    }
 
     void check(Path file) throws IOException {
         Path name = file.getFileName();
@@ -21,6 +27,7 @@ public class YamlFilesChecker extends SimpleFileVisitor<Path> {
             Yaml yaml = new Yaml();
             Object obj = yaml.load(Files.newInputStream(file));
             assert obj != null : String.format("Yaml parser failed during parsing %s.", file.toString());
+            mojo.getLog().info(String.format("\t%s: OK", file.toString()));
         }
     }
 
@@ -29,7 +36,7 @@ public class YamlFilesChecker extends SimpleFileVisitor<Path> {
         try {
             check(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            mojo.getLog().error(e);
         }
         return CONTINUE;
     }
