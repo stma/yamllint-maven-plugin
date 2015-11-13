@@ -8,8 +8,9 @@
   <packaging>maven-plugin</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
-
+  <description>This project aims to give you a validate time tool to show your yaml file deffects.</description>
   <url>https://github.com/stma/yamllint-maven-plugin</url>
+  <inceptionYear>2015</inceptionYear>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,8 +25,12 @@
 
   <developers>
     <developer>
-      <name>MMatyas Steiner</name>
+      <name>Matyas Steiner</name>
       <email>steiner.matyas@gmail.com</email>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
     </developer>
   </developers>
 
@@ -137,6 +142,10 @@
           <id>ossrh</id>
           <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
       </distributionManagement>
       <build>
         <plugins>
@@ -191,6 +200,10 @@
                 </goals>
               </execution>
             </executions>
+            <configuration>
+              <executable>gpg2</executable>
+              <keyname>99919F33</keyname>
+            </configuration>
           </plugin>
         </plugins>
       </build>
