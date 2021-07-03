@@ -20,7 +20,7 @@ public class YamlLintMojo extends AbstractMojo {
     @Parameter( defaultValue = "${basedir}", property = "baseDir", required = true )
     private File projectBaseDir;
 
-    @Parameter( defaultValue = "*.yaml")
+    @Parameter( defaultValue = "*.{yaml,yml}")
     private String pattern;
 
     public void execute() throws MojoExecutionException {
