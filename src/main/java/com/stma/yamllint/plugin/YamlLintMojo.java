@@ -20,9 +20,12 @@ public class YamlLintMojo extends AbstractMojo {
     @Parameter( defaultValue = "${basedir}", property = "baseDir", required = true )
     private File projectBaseDir;
 
+    @Parameter( defaultValue = "*.yaml")
+    private String pattern;
+
     public void execute() throws MojoExecutionException {
         try {
-            Files.walkFileTree(projectBaseDir.toPath(), new YamlFilesChecker(this));
+            Files.walkFileTree(projectBaseDir.toPath(), new YamlFilesChecker(this, pattern));
         } catch (IOException e) {
             getLog().error(e);
         }
